@@ -338,6 +338,19 @@ textarea:focus {
   height: 92px;
 }
 
+.history-scroll {
+  max-height: 430px;
+  margin-top: 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 4px;
+  scrollbar-color: #9aa89d transparent;
+}
+
+.history-scroll .history-list {
+  margin-top: 0;
+}
+
 .history-actions {
   display: flex;
   align-items: center;
