@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#eef3ef">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="운동로그">
+    <title>운동로그</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/icon.svg">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">하루 운동을 한눈에</p>
+          <h1>운동로그</h1>
+        </div>
+        <img src="assets/fitness-mark.svg" alt="" class="hero-art" width="116" height="116">
+      </header>
+
+      <section class="panel profile-panel" aria-labelledby="profile-title">
+        <div class="section-heading">
+          <h2 id="profile-title">내 몸 기준</h2>
+          <span id="profileStatus">저장됨</span>
+        </div>
+        <div class="profile-grid">
+          <label>
+            <span>몸무게 kg</span>
+            <input id="weightInput" inputmode="decimal" value="60">
+          </label>
+          <label>
+            <span>키 cm</span>
+            <input id="heightInput" inputmode="decimal" value="165">
+          </label>
+        </div>
+      </section>
+
+      <section class="summary" aria-labelledby="summary-title">
+        <p id="summary-title">이번 달 운동 횟수</p>
+        <strong id="monthWorkoutCount">0회</strong>
+        <div class="summary-grid">
+          <article>
+            <span>오늘 총 소비</span>
+            <b id="todayCalories">0 kcal</b>
+          </article>
+          <article>
+            <span>유산소</span>
+            <b id="cardioCalories">0 kcal</b>
+          </article>
+          <article>
+            <span>무산소</span>
+            <b id="strengthCalories">0 kcal</b>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="entry-title">
+        <h2 id="entry-title">오늘 운동 기록</h2>
+        <form id="workoutForm">
+          <label>
+            <span>날짜</span>
+            <input id="dateInput" type="date">
+          </label>
+          <label>
+            <span>운동 내용</span>
+            <textarea id="workoutText" rows="8" spellcheck="false">시티드로우 10      10/10/10/10
+레그프레스 10      10/10/10/10
+힙어브덕션 22.5  10/10/10/10
+천국의계단 레벨  7 20분
+어시스트   55     10/10/10/10
+랫풀다운   20     10/10/10/10</textarea>
+          </label>
+          <label>
+            <span>메모</span>
+            <textarea id="memoInput" rows="3" placeholder="무릎 느낌, 허리 부담, 다음에 조심할 점"></textarea>
+          </label>
+          <button class="primary-button" type="submit">
+            <span>운동 저장</span>
+            <span aria-hidden="true">+</span>
+          </button>
+        </form>
+      </section>
+
+      <section class="panel analysis-panel" aria-labelledby="analysis-title">
+        <div class="section-heading">
+          <h2 id="analysis-title">오늘 분석</h2>
+          <span id="exerciseCount">0개</span>
+        </div>
+        <div id="analysisList" class="analysis-list"></div>
+        <div class="note-box">
+          <h3>주의 메모</h3>
+          <ul id="cautionList"></ul>
+        </div>
+      </section>
+
+      <section class="panel history-panel" aria-labelledby="history-title">
+        <div class="section-heading">
+          <h2 id="history-title">운동한 날</h2>
+          <span id="historyCount">0일</span>
+        </div>
+        <div id="emptyState" class="empty-state">
+          <img src="assets/calendar-plate.svg" alt="" width="92" height="92">
+          <p>운동을 저장하면 이번 달 횟수와 날짜별 칼로리가 쌓여요.</p>
+        </div>
+        <ul id="historyList" class="history-list"></ul>
+      </section>
+
+      <section class="utility-row" aria-label="데이터 관리">
+        <button id="sampleButton" type="button">예시 넣기</button>
+        <button id="exportButton" type="button">백업 내보내기</button>
+        <label class="import-button">
+          <input id="importInput" type="file" accept="application/json">
+          백업 가져오기
+        </label>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

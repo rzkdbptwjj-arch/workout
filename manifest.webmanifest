@@ -1,0 +1,17 @@
+{
+  "name": "운동로그",
+  "short_name": "운동로그",
+  "description": "운동 기록을 유산소와 무산소로 나누고 칼로리와 메모를 보여주는 앱",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#eef3ef",
+  "theme_color": "#eef3ef",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
