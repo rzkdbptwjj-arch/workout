@@ -338,17 +338,32 @@ textarea:focus {
   height: 92px;
 }
 
-.history-scroll {
-  max-height: 430px;
+.panel-scroll {
+  max-height: 360px;
   margin-top: 14px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding-right: 4px;
+  padding: 2px 4px 2px 0;
   scrollbar-color: #9aa89d transparent;
 }
 
-.history-scroll .history-list {
+.analysis-scroll {
+  max-height: 430px;
+}
+
+.history-scroll {
+  max-height: 430px;
+  min-height: 180px;
+  border-top: 1px solid transparent;
+}
+
+.panel-scroll .analysis-list,
+.panel-scroll .history-list {
   margin-top: 0;
+}
+
+.history-scroll:empty {
+  display: none;
 }
 
 .history-actions {

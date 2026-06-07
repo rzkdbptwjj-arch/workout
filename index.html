@@ -11,7 +11,7 @@
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="assets/icon.svg">
-    <link rel="stylesheet" href="styles.css?v=20260607-4">
+    <link rel="stylesheet" href="styles.css?v=20260607-5">
   </head>
   <body>
     <main class="app-shell">
@@ -98,10 +98,12 @@
           <h2 id="analysis-title">오늘 분석</h2>
           <span id="exerciseCount">0개</span>
         </div>
-        <div id="analysisList" class="analysis-list"></div>
-        <div class="note-box">
-          <h3>주의 메모</h3>
-          <ul id="cautionList"></ul>
+        <div class="panel-scroll analysis-scroll" aria-label="오늘 운동 분석">
+          <div id="analysisList" class="analysis-list"></div>
+          <div class="note-box">
+            <h3>주의 메모</h3>
+            <ul id="cautionList"></ul>
+          </div>
         </div>
       </section>
 
@@ -122,7 +124,7 @@
           </svg>
           <p>운동을 저장하면 이번 달 횟수와 날짜별 칼로리가 쌓여요.</p>
         </div>
-        <div class="history-scroll" aria-label="저장된 운동 기록">
+        <div class="panel-scroll history-scroll" aria-label="저장된 운동 기록">
           <ul id="historyList" class="history-list"></ul>
         </div>
       </section>
@@ -137,6 +139,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=20260607-4"></script>
+    <script src="app.js?v=20260607-5"></script>
   </body>
 </html>
