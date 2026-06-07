@@ -211,6 +211,7 @@ textarea:focus {
 }
 
 .primary-button,
+.secondary-button,
 .utility-row button,
 .import-button {
   min-height: 48px;
@@ -236,6 +237,12 @@ textarea:focus {
   height: 24px;
   border-radius: 999px;
   background: var(--coral);
+}
+
+.secondary-button {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
 }
 
 .analysis-list,
@@ -331,14 +338,31 @@ textarea:focus {
   height: 92px;
 }
 
+.history-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.edit-button,
 .delete-button {
-  width: 38px;
+  min-width: 44px;
   height: 38px;
   border: 1px solid var(--line);
   border-radius: 8px;
+  padding: 0 10px;
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.edit-button {
+  background: #f2f7ff;
+  color: var(--blue);
+}
+
+.delete-button {
   background: #fff6f5;
   color: #a9292a;
-  font-size: 1.1rem;
 }
 
 .utility-row {
@@ -378,6 +402,10 @@ textarea:focus {
   form label:nth-child(2),
   form label:nth-child(3),
   .primary-button {
+    grid-column: 1 / -1;
+  }
+
+  .secondary-button {
     grid-column: 1 / -1;
   }
 }

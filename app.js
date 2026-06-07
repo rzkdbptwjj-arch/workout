@@ -28,6 +28,8 @@ const dateInput = document.querySelector("#dateInput");
 const workoutText = document.querySelector("#workoutText");
 const memoInput = document.querySelector("#memoInput");
 const workoutForm = document.querySelector("#workoutForm");
+const submitLabel = document.querySelector("#submitLabel");
+const cancelEditButton = document.querySelector("#cancelEditButton");
 const monthWorkoutCount = document.querySelector("#monthWorkoutCount");
 const todayCalories = document.querySelector("#todayCalories");
 const cardioCalories = document.querySelector("#cardioCalories");
@@ -44,6 +46,7 @@ const importInput = document.querySelector("#importInput");
 
 let entries = loadJson(storageKey, []);
 let profile = loadJson(profileKey, { weight: 60, height: 165 });
+let editingEntryId = null;
 
 weightInput.value = profile.weight;
 heightInput.value = profile.height;
@@ -61,17 +64,30 @@ workoutForm.addEventListener("submit", (event) => {
   if (!exercises.length) return;
 
   const date = dateInput.value || toDateInputValue(new Date());
-  entries.push({
-    id: crypto.randomUUID(),
+  const nextEntry = {
+    id: editingEntryId || crypto.randomUUID(),
     date,
     text: workoutText.value,
     memo: memoInput.value.trim(),
     profile: currentProfile(),
-    createdAt: new Date().toISOString()
-  });
+    createdAt: editingEntryId ? findEntry(editingEntryId)?.createdAt || new Date().toISOString() : new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+
+  if (editingEntryId) {
+    entries = entries.map((entry) => entry.id === editingEntryId ? nextEntry : entry);
+  } else {
+    entries.push(nextEntry);
+  }
 
   saveJson(storageKey, entries);
   memoInput.value = "";
+  stopEditing();
+  render();
+});
+
+cancelEditButton.addEventListener("click", () => {
+  stopEditing();
   render();
 });
 
@@ -220,7 +236,10 @@ function renderHistory() {
           <h3></h3>
           <p></p>
         </div>
-        <button class="delete-button" type="button" aria-label="기록 삭제">×</button>
+        <div class="history-actions">
+          <button class="edit-button" type="button">수정</button>
+          <button class="delete-button" type="button">삭제</button>
+        </div>
       </div>
       <strong class="calorie"></strong>
       <p class="memo"></p>
@@ -229,13 +248,38 @@ function renderHistory() {
     card.querySelector("p").textContent = `유산소 ${cardioCount}개 · 무산소 ${strengthCount}개`;
     card.querySelector(".calorie").textContent = `약 ${total} kcal`;
     card.querySelector(".memo").textContent = entry.memo ? `메모: ${entry.memo}` : "메모 없음";
+    card.querySelector(".edit-button").addEventListener("click", () => {
+      startEditing(entry);
+    });
     card.querySelector(".delete-button").addEventListener("click", () => {
       entries = entries.filter((current) => current.id !== entry.id);
       saveJson(storageKey, entries);
+      if (editingEntryId === entry.id) stopEditing();
       render();
     });
     historyList.append(card);
   });
+}
+
+function startEditing(entry) {
+  editingEntryId = entry.id;
+  dateInput.value = entry.date;
+  workoutText.value = entry.text;
+  memoInput.value = entry.memo || "";
+  submitLabel.textContent = "수정 저장";
+  cancelEditButton.hidden = false;
+  workoutForm.scrollIntoView({ behavior: "smooth", block: "start" });
+  render();
+}
+
+function stopEditing() {
+  editingEntryId = null;
+  submitLabel.textContent = "운동 저장";
+  cancelEditButton.hidden = true;
+}
+
+function findEntry(id) {
+  return entries.find((entry) => entry.id === id);
 }
 
 function parseWorkout(text) {
