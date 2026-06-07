@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="운동 달력 그림">
+  <rect x="28" y="34" width="104" height="100" rx="18" fill="#fffef9" stroke="#d7ded6" stroke-width="6"/>
+  <path d="M28 62h104" stroke="#24785a" stroke-width="8"/>
+  <path d="M56 25v24M104 25v24" stroke="#1f2722" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="61" cy="89" r="8" fill="#e05b4f"/>
+  <circle cx="84" cy="89" r="8" fill="#366a9b"/>
+  <circle cx="107" cy="89" r="8" fill="#24785a"/>
+  <path d="M56 116h52" stroke="#1f2722" stroke-width="9" stroke-linecap="round"/>
+</svg>

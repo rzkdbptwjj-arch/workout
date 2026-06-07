@@ -131,7 +131,7 @@ function render() {
   const cardio = sum(previewExercises.filter((exercise) => exercise.category === "cardio").map((exercise) => exercise.calories));
   const strength = sum(previewExercises.filter((exercise) => exercise.category === "strength").map((exercise) => exercise.calories));
 
-  monthWorkoutCount.textContent = `${uniqueDates(monthEntries).length}회`;
+  monthWorkoutCount.textContent = `${uniqueDates(monthEntries).size}회`;
   todayCalories.textContent = `${Math.round(cardio + strength)} kcal`;
   cardioCalories.textContent = `${Math.round(cardio)} kcal`;
   strengthCalories.textContent = `${Math.round(strength)} kcal`;
@@ -200,7 +200,7 @@ function renderHistory() {
     return parseTimestamp(b.createdAt) - parseTimestamp(a.createdAt);
   });
 
-  historyCount.textContent = `${uniqueDates(entries).length}일`;
+  historyCount.textContent = `${uniqueDates(entries).size}일`;
   emptyState.hidden = sorted.length > 0;
   historyList.innerHTML = "";
 
